@@ -18,7 +18,6 @@ interix
 ppc64-darwin
 irix
 sparc-abi-check
-remove-debug-code
 ungccify
 ios-fixes
 bad-abi-fix
@@ -26,3 +25,15 @@ msvcc
 fix_maxopt
 fix-ppc32
 darwin-EH-fix
+more-openbsd
+more-openbsd-mips
+darwin11
+powerpc-sysv-without-string-ops
+windows-ce-arm
+kfreebsd-mmap
+minix
+
+interix-patch
+remove-debug-code
+powerpc-ffi-softfloat
+variadic

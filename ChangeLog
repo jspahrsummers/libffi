@@ -1,3 +1,112 @@
+2011-11-12  David Gilbert <david.gilbert@linaro.org>
+
+	* doc/libffi.texi, include/ffi.h.in, include/ffi_common.h,
+	man/Makefile.am, man/ffi.3, man/ffi_prep_cif.3,
+	man/ffi_prep_cif_var.3, src/arm/ffi.c, src/arm/ffitarget.h,
+	src/cris/ffi.c, src/prep_cif.c,
+	testsuite/libffi.call/cls_double_va.c,
+	testsuite/libffi.call/cls_longdouble_va.c,
+	testsuite/libffi.call/float_va.c: Many changes to support variadic
+	function calls.
+
+2011-11-12  Kyle Moffett <Kyle.D.Moffett@boeing.com>
+
+	* src/powerpc/ffi.c, src/powerpc/ffitarget.h,
+	src/powerpc/ppc_closure.S, src/powerpc/sysv.S: Many changes for
+	softfloat powerpc variants.
+
+2011-11-12  Petr Salinger <Petr.Salinger@seznam.cz>
+
+	* configure.ac (FFI_EXEC_TRAMPOLINE_TABLE): Fix kfreebsd support.
+	* configure: Rebuilt.
+
+2011-11-12  Timothy Wall  <twall@users.sf.net>
+
+	* src/arm/ffi.c (ffi_prep_args, ffi_prep_incoming_args_SYSV): Max
+	alignment of 4 for wince on ARM.
+
+2011-11-12  Kyle Moffett <Kyle.D.Moffett@boeing.com>
+	    Anthony Green <green@moxielogic.com>
+
+	* src/ppc/sysv.S, src/ppc/ffi.c: Remove use of ppc string
+	instructions (not available on some cores, like the PPC440).
+
+2011-11-12  Kimura Wataru  <kimuraw@i.nifty.jp>
+
+	* m4/ax_enable_builddir: Change from string comparison to numeric
+	comparison for wc output.
+	* configure.ac: Enable FFI_MMAP_EXEC_WRIT for darwin11 aka Mac OS
+	X 10.7.
+	* configure: Rebuilt.
+
+2011-11-12  Anthony Green  <green@moxielogic.com>
+
+	* Makefile.am (AM_CCASFLAGS): Add -g option to build assembly
+	files with debug info.
+	* Makefile.in: Rebuilt.
+
+2011-11-12  Jasper Lievisse Adriaanse <jasper@openbsd.org>
+
+	* README: Update list of supported OpenBSD systems.
+
+2011-11-12  Anthony Green  <green@moxielogic.com>
+
+	* libtool-version: Update.
+	* Makefile.am (nodist_libffi_la_SOURCES): Add src/debug.c if
+	FFI_DEBUG.
+	(libffi_la_SOURCES): Remove src/debug.c
+	(EXTRA_DIST): Add src/debug.c
+	* Makefile.in: Rebuilt.
+	* README: Update for 3.0.11.
+
+2011-11-10  Richard Henderson  <rth@redhat.com>
+
+	* configure.ac (GCC_AS_CFI_PSEUDO_OP): Use it instead of inline check.
+	* configure, aclocal.m4: Rebuild.
+
+2011-09-04  Iain Sandoe  <iains@gcc.gnu.org>
+
+	PR libffi/49594
+	* src/powerpc/darwin_closure.S (stubs): Make the stub binding
+	helper reference track the architecture pointer size.
+
+2011-08-25  Andrew Haley  <aph@redhat.com>
+
+	* src/arm/ffi.c (FFI_INIT_TRAMPOLINE): Remove hard-coded assembly
+	instructions.
+	* src/arm/sysv.S (ffi_arm_trampoline): Put them here instead.
+
+2011-07-11  Andrew Haley  <aph@redhat.com>
+
+        * src/arm/ffi.c (FFI_INIT_TRAMPOLINE): Clear icache.
+
+2011-06-29  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
+
+	* testsuite/libffi.call/cls_double_va.c: Move PR number to comment.
+	* testsuite/libffi.call/cls_longdouble_va.c: Likewise.
+
+2011-06-29  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
+
+	PR libffi/46660
+	* testsuite/libffi.call/cls_double_va.c: xfail dg-output on
+	mips-sgi-irix6*.
+	* testsuite/libffi.call/cls_longdouble_va.c: Likewise.
+
+2011-06-14  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
+
+	* testsuite/libffi.call/huge_struct.c (test_large_fn): Use PRIu8,
+	PRId8 instead of %hhu, %hhd.
+	* testsuite/libffi.call/ffitest.h [__alpha__ && __osf__] (PRId8,
+	PRIu8): Define.
+	[__sgi__] (PRId8, PRIu8): Define.
+
+2011-04-29  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
+
+	* src/alpha/osf.S (UA_SI, FDE_ENCODING, FDE_ENCODE, FDE_ARANGE):
+	Define.
+	Use them to handle ELF vs. ECOFF differences.
+	[__osf__] (_GLOBAL__F_ffi_call_osf): Define.
+
 2011-03-30  Timothy Wall  <twall@users.sf.net>
 
 	* src/powerpc/darwin.S: Fix unknown FDE encoding.
@@ -12,6 +121,10 @@
 
 	* m4/ax_cc_maxopt.m4: Don't -malign-double or use -ffast-math.
 	* configure: Rebuilt.
+
+2011-02-13  Ralf Wildenhues  <Ralf.Wildenhues@gmx.de>
+
+	* configure: Regenerate.
 
 2011-02-13  Anthony Green  <green@moxielogic.com>
 
@@ -29,15 +142,6 @@
 	* src/mips/ffi.c (ffi_prep_closure_loc): Ditto.
 	* src/ia64/ffi.c (ffi_prep_closure_loc): Ditto.
 	* src/avr32/ffi.c (ffi_prep_closure_loc): Ditto.
-
-2011-02-11  Anthony Green  <green@moxielogic.com>
-
-	* libtool-version: Update.
-	* Makefile.am (nodist_libffi_la_SOURCES): Add src/debug.c if
-	FFI_DEBUG.
-	(libffi_la_SOURCES): Remove src/debug.c
-	(EXTRA_DIST): Add src/debug.c
-	* Makefile.in: Rebuilt.
 
 2011-02-11  Anthony Green  <green@moxielogic.com>
 
@@ -104,11 +208,8 @@
 2011-02-08  Ginn Chen  <ginn.chen@oracle.com>
 
 	* src/sparc/ffi.c (ffi_call): Make compatible with Solaris Studio
-	aggregate return ABI.
-
-2011-02-08  Ed  <ed@kdtc.net>
-
-	* src/powerpc/asm.h: Fix grammar nit in comment.
+	aggregate return ABI.  Flush cache.
+	(ffi_prep_closure_loc): Flush cache.
 
 2011-02-11  Anthony Green  <green@moxielogic.com>
 
@@ -119,9 +220,20 @@
 	instructions.
 	* src/powerpc/aix_closure.S: Declare .ffi_closure_helper_DARWIN.
 
+2011-02-08  Ed  <ed@kdtc.net>
+
+	* src/powerpc/asm.h: Fix grammar nit in comment.
+
 2011-02-08  Uli Link  <ul.mcamafia@linkitup.de>
 
 	* include/ffi.h.in (FFI_64_BIT_MAX): Define and use.
+
+2011-02-09  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
+
+	PR libffi/46661
+	* testsuite/libffi.call/cls_pointer.c (main): Cast void * to
+	uintptr_t first.
+	* testsuite/libffi.call/cls_pointer_stack.c (main): Likewise.
 
 2011-02-08  Rafael Avila de Espindola  <respindola@mozilla.com>
 
@@ -737,6 +849,11 @@
 	* include/Makefile.in: Regenerate.
 	* man/Makefile.in: Regenerate.
 	* testsuite/Makefile.in: Regenerate.
+
+2011-08-22  Jasper Lievisse Adriaanse <jasper@openbsd.org>
+
+	* configure.ac: Add OpenBSD/hppa and OpenBSD/powerpc support.
+	* configure: Rebuilt.
 
 2009-07-30  Ralf Wildenhues  <Ralf.Wildenhues@gmx.de>
 

@@ -2,7 +2,7 @@ dnl Process this with autoconf to create configure
 
 AC_PREREQ(2.63)
 
-AC_INIT([libffi], [3.0.10rc9], [http://sourceware.org/libffi.html])
+AC_INIT([libffi], [3.0.11-rc2], [http://sourceware.org/libffi.html])
 AC_CONFIG_HEADERS([fficonfig.h])
 
 AC_CANONICAL_SYSTEM
@@ -83,7 +83,7 @@ case "$host" in
 	TARGET=FRV; TARGETDIR=frv
 	;;
 
-  hppa*-*-linux* | parisc*-*-linux*)
+  hppa*-*-linux* | parisc*-*-linux* | hppa*-*-openbsd*)
 	TARGET=PA_LINUX; TARGETDIR=pa
 	;;
   hppa*64-*-hpux*)
@@ -133,10 +133,14 @@ case "$host" in
   mips-sgi-irix5.* | mips-sgi-irix6.* | mips*-*-rtems*)
 	TARGET=MIPS; TARGETDIR=mips
 	;;
-  mips*-*-linux*)
+  mips*-*-linux* | mips*-*-openbsd*)
 	# Support 128-bit long double for NewABI.
 	HAVE_LONG_DOUBLE='defined(__mips64)'
 	TARGET=MIPS; TARGETDIR=mips
+	;;
+
+  moxie-*-*)
+        TARGET=MOXIE; TARGETDIR=moxie
 	;;
 
   powerpc*-*-linux* | powerpc-*-sysv*)
@@ -151,7 +155,7 @@ case "$host" in
   powerpc-*-aix* | rs6000-*-aix*)
 	TARGET=POWERPC_AIX; TARGETDIR=powerpc
 	;;
-  powerpc-*-freebsd*)
+  powerpc-*-freebsd* | powerpc-*-openbsd*)
 	TARGET=POWERPC_FREEBSD; TARGETDIR=powerpc
 	;;
   powerpc64-*-freebsd*)
@@ -245,17 +249,7 @@ AC_SUBST(HAVE_LONG_DOUBLE)
 
 AC_C_BIGENDIAN
 
-AC_CACHE_CHECK([assembler .cfi pseudo-op support],
-    libffi_cv_as_cfi_pseudo_op, [
-    libffi_cv_as_cfi_pseudo_op=unknown
-    AC_TRY_COMPILE([asm (".cfi_startproc\n\t.cfi_endproc");],,
-		   [libffi_cv_as_cfi_pseudo_op=yes],
-		   [libffi_cv_as_cfi_pseudo_op=no])
-])
-if test "x$libffi_cv_as_cfi_pseudo_op" = xyes; then
-    AC_DEFINE(HAVE_AS_CFI_PSEUDO_OP, 1,
-	      [Define if your assembler supports .cfi_* directives.])
-fi
+GCC_AS_CFI_PSEUDO_OP
 
 if test x$TARGET = xSPARC; then
     AC_CACHE_CHECK([assembler and linker support unaligned pc related relocs],
@@ -345,7 +339,7 @@ case "$target" in
                  [Cannot use PROT_EXEC on this target, so, we revert to
                    alternative means])
      ;;
-     *-apple-darwin10* | *-*-freebsd* | *-*-openbsd* | *-pc-solaris*)
+     *-apple-darwin1[[10]]* | *-*-freebsd* | *-*-kfreebsd* | *-*-openbsd* | *-pc-solaris*)
        AC_DEFINE(FFI_MMAP_EXEC_WRIT, 1,
                  [Cannot use malloc on this target, so, we revert to
                    alternative means])

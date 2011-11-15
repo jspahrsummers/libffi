@@ -6,6 +6,7 @@
 
 /* { dg-do run { xfail strongarm*-*-* xscale*-*-* } } */
 /* { dg-output "" { xfail avr32*-*-* } } */
+/* { dg-output "" { xfail mips-sgi-irix6* } } PR libffi/46660 */
 /* { dg-skip-if "" arm*-*-* { "-mfloat-abi=hard" } { "" } } */
 
 #include "ffitest.h"
@@ -36,7 +37,8 @@ int main (void)
 	arg_types[1] = &ffi_type_double;
 	arg_types[2] = NULL;
 
-	CHECK(ffi_prep_cif(&cif, FFI_DEFAULT_ABI, 2, &ffi_type_sint,
+	/* This printf call is variadic */
+	CHECK(ffi_prep_cif_var(&cif, FFI_DEFAULT_ABI, 1, 2, &ffi_type_sint,
 		arg_types) == FFI_OK);
 
 	args[0] = &format;

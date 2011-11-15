@@ -2,7 +2,10 @@ Index: libffi/ChangeLog
 ===================================================================
 --- libffi.orig/ChangeLog
 +++ libffi/ChangeLog
-@@ -1,7 +1,20 @@
+@@ -50,6 +50,19 @@
+ 
+ 	* configure: Regenerate.
+ 
 +2011-02-11  Anthony Green  <green@moxielogic.com>
 +
 +	From Tom Honermann <tom.honermann@oracle.com>:
@@ -16,6 +19,10 @@ Index: libffi/ChangeLog
 +
 +	* include/ffi.h.in (FFI_64_BIT_MAX): Define and use.
 +
+ 2011-02-09  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
+ 
+ 	PR libffi/46661
+@@ -60,7 +73,7 @@
  2011-02-08  Rafael Avila de Espindola  <respindola@mozilla.com>
  
  	* configure.ac: Fix x86 test for pc related relocs.
@@ -171,7 +178,7 @@ Index: libffi/configure
 ===================================================================
 --- libffi.orig/configure
 +++ libffi/configure
-@@ -13313,67 +13313,69 @@ $as_echo "#define HAVE_AS_X86_64_UNWIND_
+@@ -13285,67 +13285,69 @@ $as_echo "#define HAVE_AS_X86_64_UNWIND_
      fi
  fi
  
@@ -270,7 +277,7 @@ Index: libffi/configure.ac
 ===================================================================
 --- libffi.orig/configure.ac
 +++ libffi/configure.ac
-@@ -351,44 +351,46 @@ if test x$TARGET = xX86_64; then
+@@ -345,44 +345,46 @@ if test x$TARGET = xX86_64; then
      fi
  fi
  

@@ -489,6 +489,11 @@ ARM_FUNC_START ffi_closure_VFP
         .size    CNAME(ffi_closure_VFP),.ffi_closure_VFP_end-CNAME(ffi_closure_VFP)
 #endif
 
+ENTRY(ffi_arm_trampoline)
+	stmfd sp!, {r0-r3}
+	ldr r0, [pc]
+	ldr pc, [pc]
+
 #if defined __ELF__ && defined __linux__
 	.section	.note.GNU-stack,"",%progbits
 #endif

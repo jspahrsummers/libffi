@@ -2,7 +2,10 @@ Index: libffi/ChangeLog
 ===================================================================
 --- libffi.orig/ChangeLog
 +++ libffi/ChangeLog
-@@ -1,3 +1,20 @@
+@@ -55,6 +55,23 @@
+ 
+ 	* configure: Regenerate.
+ 
 +2011-02-13  Anthony Green  <green@moxielogic.com>
 +
 +	* include/ffi_common.h (UNLIKELY, LIKELY): Define.
@@ -22,7 +25,7 @@ Index: libffi/ChangeLog
 +
  2011-02-11  Anthony Green  <green@moxielogic.com>
  
- 	* libtool-version: Update.
+ 	* src/sparc/ffi.c (ffi_prep_closure_loc): Don't ASSERT ABI test,
 Index: libffi/include/ffi_common.h
 ===================================================================
 --- libffi.orig/include/ffi_common.h
@@ -73,7 +76,7 @@ Index: libffi/src/arm/ffi.c
     ARM Foreign Function Interface 
  
     Permission is hereby granted, free of charge, to any person obtaining
-@@ -582,7 +584,7 @@ ffi_prep_closure_loc (ffi_closure* closu
+@@ -586,7 +588,7 @@ ffi_prep_closure_loc (ffi_closure* closu
    else if (cif->abi == FFI_VFP)
      closure_func = &ffi_closure_VFP;
    else

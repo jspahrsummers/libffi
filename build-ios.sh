@@ -2,8 +2,8 @@
 
 PLATFORM_IOS=/Developer/Platforms/iPhoneOS.platform/
 PLATFORM_IOS_SIM=/Developer/Platforms/iPhoneSimulator.platform/
-SDK_IOS_VERSION="4.3"
-MIN_IOS_VERSION="3.0"
+SDK_IOS_VERSION="5.0"
+MIN_IOS_VERSION="4.3"
 OUTPUT_DIR="universal-ios"
 
 build_target () {
@@ -15,7 +15,9 @@ build_target () {
 
     mkdir -p "${builddir}"
     pushd "${builddir}"
-    export CC="${platform}"/Developer/usr/bin/gcc-4.2
+	export SDKROOT=$sdk
+    export CC="xcrun llvm-gcc-4.2"
+	export LD="xcrun ld"
     export CFLAGS="-arch ${arch} -isysroot ${sdk} -miphoneos-version-min=${MIN_IOS_VERSION}"
     ../configure --host=${triple} && make
     popd

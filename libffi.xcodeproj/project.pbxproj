@@ -20,7 +20,6 @@
 		F6B084571472234C0031D8A1 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = F6B084071472234C0031D8A1 /* types.c */; };
 		F6B084581472234C0031D8A1 /* darwin.S in Sources */ = {isa = PBXBuildFile; fileRef = F6B084091472234C0031D8A1 /* darwin.S */; };
 		F6B0845A1472234C0031D8A1 /* ffi.c in Sources */ = {isa = PBXBuildFile; fileRef = F6B0840B1472234C0031D8A1 /* ffi.c */; };
-		F6B0845E1472234C0031D8A1 /* sysv.S in Sources */ = {isa = PBXBuildFile; fileRef = F6B0840F1472234C0031D8A1 /* sysv.S */; };
 		F6B0847C147252410031D8A1 /* ffi_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B08473147252410031D8A1 /* ffi_arm.h */; };
 		F6B0847D147252410031D8A1 /* ffi_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B08474147252410031D8A1 /* ffi_i386.h */; };
 		F6B0847E147252410031D8A1 /* ffi.h in Headers */ = {isa = PBXBuildFile; fileRef = F6B08475147252410031D8A1 /* ffi.h */; };
@@ -234,7 +233,6 @@
 				F6B084571472234C0031D8A1 /* types.c in Sources */,
 				F6B084581472234C0031D8A1 /* darwin.S in Sources */,
 				F6B0845A1472234C0031D8A1 /* ffi.c in Sources */,
-				F6B0845E1472234C0031D8A1 /* sysv.S in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +289,8 @@
 					"$(inherited)",
 					HAVE_CONFIG_H,
 				);
+				GCC_VERSION = "";
+				"GCC_VERSION[arch=*]" = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = ios/include;
 				OTHER_CFLAGS = "-fexceptions";
 				PRODUCT_NAME = ffi;

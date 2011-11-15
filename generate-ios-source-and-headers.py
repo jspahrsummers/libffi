@@ -58,6 +58,7 @@ class device_platform(Platform):
 
 
 def move_file(src_dir, dst_dir, filename, file_suffix=None, prefix='', suffix=''):
+    print dst_dir
     mkdir_p(dst_dir)
     out_filename = filename
 
@@ -107,7 +108,7 @@ def move_source_tree(src_dir, dest_dir, dest_include_dir, arch=None, prefix=None
                      files=files)
         elif relroot == 'x86':
             move_dir(arch='i386',
-                     prefix="#ifndef __arm__\n\n",
+                     prefix="#if !defined(__arm__) && defined(__i386__)\n\n",
                      suffix="\n\n#endif",
                      files=files)
 
@@ -117,7 +118,7 @@ def build_target(platform):
     
     build_dir = 'build_' + platform.short_arch
     mkdir_p(build_dir)
-    env = dict(CC=xcrun_cmd('gcc'),
+    env = dict(CC=xcrun_cmd('clang'),
                LD=xcrun_cmd('ld'),
                CFLAGS='-arch %s -isysroot %s -miphoneos-version-min=4.3' % (platform.arch, platform.sdkroot))
     working_dir=os.getcwd()
@@ -154,6 +155,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F6F980BB147386130008F121 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B083A314721EE50031D8A1 /* Foundation.framework */; };
-		F6F980C1147386130008F121 /* ffi.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F980C0147386130008F121 /* ffi.m */; };
 		F6F980C7147386470008F121 /* ffi.c in Sources */ = {isa = PBXBuildFile; fileRef = F6B083B71472234C0031D8A1 /* ffi.c */; };
 		F6F980C8147386470008F121 /* ffi.c in Sources */ = {isa = PBXBuildFile; fileRef = F6B0840B1472234C0031D8A1 /* ffi.c */; };
 		F6F980C9147386470008F121 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = F6B083C01472234C0031D8A1 /* closures.c */; };
@@ -46,9 +45,6 @@
 		F6B0847A147252410031D8A1 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
 		F6B0847B147252410031D8A1 /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
 		F6F980BA147386130008F121 /* libffi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libffi.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F6F980BE147386130008F121 /* ffi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ffi-Prefix.pch"; sourceTree = "<group>"; };
-		F6F980BF147386130008F121 /* ffi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ffi.h; sourceTree = "<group>"; };
-		F6F980C0147386130008F121 /* ffi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ffi.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +64,6 @@
 			children = (
 				F6B083B11472234C0031D8A1 /* src */,
 				F6B0846C147241640031D8A1 /* include */,
-				F6F980BC147386130008F121 /* ffi */,
 				F6B083A214721EE50031D8A1 /* Frameworks */,
 				F6F980C6147386260008F121 /* Products */,
 			);
@@ -135,31 +130,14 @@
 			path = ios/include;
 			sourceTree = "<group>";
 		};
-		F6F980BC147386130008F121 /* ffi */ = {
-			isa = PBXGroup;
-			children = (
-				F6F980BF147386130008F121 /* ffi.h */,
-				F6F980C0147386130008F121 /* ffi.m */,
-				F6F980BD147386130008F121 /* Supporting Files */,
-			);
-			path = ffi;
-			sourceTree = "<group>";
-		};
-		F6F980BD147386130008F121 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F6F980BE147386130008F121 /* ffi-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		F6F980C6147386260008F121 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				F6F980BA147386130008F121 /* libffi.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
+			path = ../..;
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXGroup section */
 
@@ -221,7 +199,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6F980C1147386130008F121 /* ffi.m in Sources */,
 				F6F980C7147386470008F121 /* ffi.c in Sources */,
 				F6F980C8147386470008F121 /* ffi.c in Sources */,
 				F6F980C9147386470008F121 /* closures.c in Sources */,
@@ -285,7 +262,6 @@
 			buildSettings = {
 				DSTROOT = /tmp/ffi.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ffi/ffi-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -298,7 +274,6 @@
 			buildSettings = {
 				DSTROOT = /tmp/ffi.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ffi/ffi-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -325,6 +300,7 @@
 				F6F980C3147386130008F121 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

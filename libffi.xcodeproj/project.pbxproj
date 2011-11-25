@@ -208,7 +208,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python ./generate-ios-source-and-headers.py";
+			shellScript = "if [ ! -d \"ios\" ]\nthen\n    python ./generate-ios-source-and-headers.py\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

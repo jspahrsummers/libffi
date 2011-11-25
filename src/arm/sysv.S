@@ -147,23 +147,6 @@ _L__\name:
 .endm
 #endif
 
-.macro	RETLDM	regs=, cond=, dirn=ia
-#if defined (__INTERWORKING__)
-	.ifc "\regs",""
-	ldr\cond	lr, [sp], #4
-	.else
-	ldm\cond\dirn	sp!, {\regs, lr}
-	.endif
-	bx\cond	lr
-#else
-	.ifc "\regs",""
-	ldr\cond	pc, [sp], #4
-	.else
-	ldm\cond\dirn	sp!, {\regs, pc}
-	.endif
-#endif
-.endm
-
 	@ r0:   ffi_prep_args
 	@ r1:   &ecif
 	@ r2:   cif->bytes
@@ -187,7 +170,7 @@ ARM_FUNC_START ffi_call_SYSV
 	@     r1 already set
 
 	@ Call ffi_prep_args(stack, &ecif)
-	bl	ffi_prep_args
+	bl	_ffi_prep_args
 
 	@ move first 4 parameters in registers
 	ldmia	sp, {r0-r3}
@@ -252,6 +235,7 @@ LSYM(Lepilogue):
 #endif
 
 .ffi_call_SYSV_end:
+.align 2
 	UNWIND .fnend
 #ifdef __ELF__
         .size    CNAME(ffi_call_SYSV),.ffi_call_SYSV_end-CNAME(ffi_call_SYSV)
@@ -335,7 +319,12 @@ ARM_FUNC_START ffi_closure_SYSV
 
 /* Below are VFP hard-float ABI call and closure implementations.
    Add VFP FPU directive here. */
+#ifndef __APPLE__
+	/* the .fpu pseudo-directive is not supported by Apple's assembler,
+	   and VFP hard-float calling conventions are not supported by the
+	   compiler. */
 	.fpu	vfp
+#endif
 
 	@ r0:   fn
 	@ r1:   &ecif
@@ -362,7 +351,7 @@ ARM_FUNC_START ffi_call_VFP
 	sub	r2, fp, #64   @ VFP scratch space
 
 	@ Call ffi_prep_args(stack, &ecif, vfp_space)
-	bl	ffi_prep_args
+	bl	_ffi_prep_args
 
 	@ Load VFP register args if needed
 	cmp	r0, #0
@@ -424,11 +413,18 @@ LSYM(Lbase_args):
 	fstmiadeq	r2, {d0-d3}
 
 LSYM(Lepilogue_vfp):
-	RETLDM	"r0-r3,fp"
+#if defined (__INTERWORKING__)
+  ldmia   sp!, {r0-r3,fp, lr}
+  bx  lr
+#else
+  ldmia   sp!, {r0-r3,fp, pc}
+#endif
 
 .ffi_call_VFP_end:
 	UNWIND .fnend
+#ifdef __ELF__
         .size    CNAME(ffi_call_VFP),.ffi_call_VFP_end-CNAME(ffi_call_VFP)
+#endif
 
 
 ARM_FUNC_START ffi_closure_VFP
@@ -444,7 +440,7 @@ ARM_FUNC_START ffi_closure_VFP
 	sub	sp, sp, #72
 	str	sp, [sp, #64]
 	add	r1, sp, #64
-	bl	ffi_closure_SYSV_inner
+	bl	_ffi_closure_SYSV_inner
 
 	cmp	r0, #FFI_TYPE_INT
 	beq	.Lretint_vfp
@@ -490,7 +486,9 @@ ARM_FUNC_START ffi_closure_VFP
 
 .ffi_closure_VFP_end:
 	UNWIND .fnend
+#ifdef __ELF__
         .size    CNAME(ffi_closure_VFP),.ffi_closure_VFP_end-CNAME(ffi_closure_VFP)
+#endif
 
 ENTRY(ffi_arm_trampoline)
 	stmfd sp!, {r0-r3}

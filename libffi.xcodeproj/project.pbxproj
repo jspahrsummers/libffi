@@ -156,6 +156,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6F980C4147386130008F121 /* Build configuration list for PBXNativeTarget "ffi" */;
 			buildPhases = (
+				D0E4D53C147F3E0B002C3C9F /* Create iOS Sources */,
 				F6F980B6147386130008F121 /* Sources */,
 				F6F980B7147386130008F121 /* Frameworks */,
 				F6F980B8147386130008F121 /* Headers */,
@@ -193,6 +194,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D0E4D53C147F3E0B002C3C9F /* Create iOS Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create iOS Sources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "python ./generate-ios-source-and-headers.py";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F6F980B6147386130008F121 /* Sources */ = {

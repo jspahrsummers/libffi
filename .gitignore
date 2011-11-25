@@ -16,3 +16,6 @@ libtool
 stamp-h1
 libffi*gz
 autom4te.cache
+ios
+build_arm
+build_i386

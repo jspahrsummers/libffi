@@ -1,6 +1,7 @@
 /* -----------------------------------------------------------------*-C-*-
-   ffitarget.h - Copyright (c) 1996-2003, 2010  Red Hat, Inc.
-   Copyright (C) 2008  Free Software Foundation, Inc.
+   ffitarget.h - Copyright (c) 2012  Anthony Green
+                 Copyright (c) 1996-2003, 2010  Red Hat, Inc.
+                 Copyright (C) 2008  Free Software Foundation, Inc.
 
    Target configuration macros for x86 and x86-64.
 
@@ -67,6 +68,8 @@ typedef enum ffi_abi {
 #ifdef X86_WIN32
   FFI_SYSV,
   FFI_STDCALL,
+  FFI_THISCALL,
+  FFI_FASTCALL,
   FFI_LAST_ABI,
   /* TODO: Add fastcall support for the sake of completeness */
   FFI_DEFAULT_ABI = FFI_SYSV
@@ -102,7 +105,7 @@ typedef enum ffi_abi {
 #define FFI_NATIVE_RAW_API 0
 #else
 #ifdef X86_WIN32
-#define FFI_TRAMPOLINE_SIZE 13
+#define FFI_TRAMPOLINE_SIZE 52
 #else
 #ifdef X86_WIN64
 #define FFI_TRAMPOLINE_SIZE 29

@@ -2,7 +2,7 @@ Index: libffi/ChangeLog
 ===================================================================
 --- libffi.orig/ChangeLog
 +++ libffi/ChangeLog
-@@ -182,6 +182,14 @@
+@@ -243,6 +243,14 @@
  	* testsuite/libffi.call/cls_longdouble.c: Likewise.
  	* testsuite/libffi.call/huge_struct.c: Likewise.
  
@@ -21,7 +21,7 @@ Index: libffi/src/prep_cif.c
 ===================================================================
 --- libffi.orig/src/prep_cif.c
 +++ libffi/src/prep_cif.c
-@@ -110,7 +110,7 @@ ffi_status ffi_prep_cif(ffi_cif *cif, ff
+@@ -116,7 +116,7 @@ ffi_status ffi_prep_cif(ffi_cif *cif, ff
    FFI_ASSERT_VALID_TYPE(cif->rtype);
  
    /* x86, x86-64 and s390 stack space allocation is handled in prep_machdep. */
@@ -30,7 +30,7 @@ Index: libffi/src/prep_cif.c
    /* Make space for the return structure pointer */
    if (cif->rtype->type == FFI_TYPE_STRUCT
  #ifdef SPARC
-@@ -131,7 +131,7 @@ ffi_status ffi_prep_cif(ffi_cif *cif, ff
+@@ -137,7 +137,7 @@ ffi_status ffi_prep_cif(ffi_cif *cif, ff
  	 check after the initialization.  */
        FFI_ASSERT_VALID_TYPE(*ptr);
  
@@ -43,7 +43,7 @@ Index: libffi/src/x86/ffi.c
 ===================================================================
 --- libffi.orig/src/x86/ffi.c
 +++ libffi/src/x86/ffi.c
-@@ -155,12 +155,10 @@ ffi_status ffi_prep_cif_machdep(ffi_cif
+@@ -228,12 +228,10 @@ ffi_status ffi_prep_cif_machdep(ffi_cif
    switch (cif->rtype->type)
      {
      case FFI_TYPE_VOID:
@@ -60,7 +60,7 @@ Index: libffi/src/x86/ffitarget.h
 ===================================================================
 --- libffi.orig/src/x86/ffitarget.h
 +++ libffi/src/x86/ffitarget.h
-@@ -31,6 +31,9 @@
+@@ -32,6 +32,9 @@
  
  /* ---- System specific configurations ----------------------------------- */
  
@@ -70,7 +70,7 @@ Index: libffi/src/x86/ffitarget.h
  #if defined (X86_64) && defined (__i386__)
  #undef X86_64
  #define X86
-@@ -67,16 +70,14 @@ typedef enum ffi_abi {
+@@ -70,16 +73,14 @@ typedef enum ffi_abi {
    FFI_LAST_ABI,
    /* TODO: Add fastcall support for the sake of completeness */
    FFI_DEFAULT_ABI = FFI_SYSV
@@ -89,7 +89,7 @@ Index: libffi/src/x86/ffitarget.h
    FFI_SYSV,
    FFI_UNIX64,   /* Unix variants all use the same ABI for x86-64  */
    FFI_LAST_ABI,
-@@ -86,7 +87,6 @@ typedef enum ffi_abi {
+@@ -89,7 +90,6 @@ typedef enum ffi_abi {
    FFI_DEFAULT_ABI = FFI_UNIX64
  #endif
  #endif

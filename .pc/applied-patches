@@ -36,3 +36,8 @@ interix-patch
 remove-debug-code
 powerpc-ffi-softfloat
 variadic
+m68k-patches
+unlikely
+amiga
+alpha
+autoconf-archive-update

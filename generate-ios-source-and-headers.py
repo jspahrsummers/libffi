@@ -35,13 +35,14 @@ def latest_sdks():
     return latest_sim, latest_device
 
 sim_sdk, device_sdk = latest_sdks()
+dev_folder = subprocess.check_output(['xcode-select', '-print-path']).strip()
 
 class simulator_platform(Platform):
     sdk = sim_sdk
     arch = 'i386'
     short_arch = arch
     triple = 'i386-apple-darwin10'
-    sdkroot = '/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk'
+    sdkroot = dev_folder + '/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator5.0.sdk'
 
     prefix = "#if !defined(__arm__) && defined(__i386__)\n\n"
     suffix = "\n\n#endif"
@@ -51,7 +52,7 @@ class device_platform(Platform):
     arch = 'armv7'
     short_arch = 'arm'
     triple = 'arm-apple-darwin10'
-    sdkroot = '/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk'
+    sdkroot = dev_folder + '/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk'
 
     prefix = "#ifdef __arm__\n\n"
     suffix = "\n\n#endif"

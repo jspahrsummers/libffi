@@ -30,6 +30,10 @@
 #ifndef LIBFFI_TARGET_H
 #define LIBFFI_TARGET_H
 
+#ifndef LIBFFI_H
+#error "Please do not include ffitarget.h directly into your source.  Use ffi.h instead."
+#endif
+
 /* ---- System specific configurations ----------------------------------- */
 
 /* For code common to all platforms on x86 and x86_64. */
@@ -57,8 +61,14 @@ typedef unsigned long long     ffi_arg;
 typedef long long              ffi_sarg;
 #endif
 #else
+#if defined __x86_64__ && !defined __LP64__
+#define FFI_SIZEOF_ARG 8
+typedef unsigned long long     ffi_arg;
+typedef long long              ffi_sarg;
+#else
 typedef unsigned long          ffi_arg;
 typedef signed long            ffi_sarg;
+#endif
 #endif
 
 typedef enum ffi_abi {

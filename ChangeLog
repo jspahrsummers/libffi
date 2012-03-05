@@ -1,9 +1,36 @@
+2012-03-03  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* src/x86/ffi64.c (ffi_call): Cast the return value to unsigned
+	long.
+	(ffi_prep_closure_loc): Cast to 64bit address in trampoline.
+	(ffi_closure_unix64_inner): Cast return pointer to unsigned long
+	first.
+
+	* src/x86/ffitarget.h (FFI_SIZEOF_ARG): Defined to 8 for x32.
+	(ffi_arg): Set to unsigned long long for x32.
+	(ffi_sarg): Set to long long for x32.
+
+2012-03-03  H.J. Lu  <hongjiu.lu@intel.com>
+
+	* src/prep_cif.c (ffi_prep_cif_core): Properly check bad ABI.
+
+2012-03-03  Andoni Morales Alastruey  <ylatuya@gmail.com>
+
+	* configure.ac: Add -no-undefined for both 32- and 64-bit x86
+	windows-like hosts.
+	* configure: Rebuilt.
+
+2012-02-23  Anthony Green  <green@moxielogic.com>
+
+	* src/*/ffitarget.h: Ensure that users never include ffitarget.h
+	directly.
+
 2012-02-10  Kai Tietz  <ktietz@redhat.com>
 
 	* configure.ac (AM_LTLDFLAGS): Add -no-undefine for x64
 	windows target.
 	* configure: Regenerated.
-	
+
 2012-02-08  Kai Tietz  <ktietz@redhat.com>
 
 	* src/prep_cif.c (ffi_prep_cif): Allow for X86_WIN32

@@ -109,43 +109,37 @@
 #define UNWIND @
 #endif	
 
+.syntax unified
 	
 #if defined(__thumb__) && !defined(__THUMB_INTERWORK__)
-.macro	ARM_FUNC_START name
-	.text
-	.align 0
-	.thumb
-	.thumb_func
-#ifdef __APPLE__
-	ENTRY($0)
+#define ARM_FUNC_START(name) \
+	.text; \
+	.align 4; \
+	.thumb; \
+	.thumb_func; \
+	ENTRY(name); \
+	bx pc; \
+	nop; \
+	.arm; \
+	UNWIND .fnstart; \
+_L__##name:
 #else
-	ENTRY(\name)
-#endif
-	bx	pc
-	nop
-	.arm
+#define ARM_FUNC_START(name) \
+	.text; \
+	.align 4; \
+	.arm; \
+	ENTRY(name); \
 	UNWIND .fnstart
-/* A hook to tell gdb that we've switched to ARM mode.  Also used to call
-   directly from other local arm routines.  */
-#ifdef __APPLE__
-_L__$0:
+#endif
+
+.macro	RETLDM
+#if defined (__INTERWORKING__)
+	ldr	lr, [sp], #4
+	bx	lr
 #else
-_L__\name:
+	ldr	pc, [sp], #4
 #endif
 .endm
-#else
-.macro	ARM_FUNC_START name
-	.text
-	.align 0
-	.arm
-#ifdef __APPLE__
-	ENTRY($0)
-#else
-	ENTRY(\name)
-#endif
-	UNWIND .fnstart
-.endm
-#endif
 
 	@ r0:   ffi_prep_args
 	@ r1:   &ecif
@@ -153,8 +147,7 @@ _L__\name:
 	@ r3:   fig->flags
 	@ sp+0: ecif.rvalue
 
-	@ This assumes we are using gas.
-ARM_FUNC_START ffi_call_SYSV
+ARM_FUNC_START(ffi_call_SYSV)
 	@ Save registers
         stmfd	sp!, {r0-r3, fp, lr}
 	UNWIND .save	{r0-r3, fp, lr}
@@ -211,7 +204,7 @@ ARM_FUNC_START ffi_call_SYSV
 #if defined(__SOFTFP__) || defined(__ARM_EABI__)
 	cmpne	r3, #FFI_TYPE_DOUBLE
 #endif
-	stmeqia	r2, {r0, r1}
+	stmiaeq	r2, {r0, r1}
 
 #if !defined(__SOFTFP__) && !defined(__ARM_EABI__)
 	beq	LSYM(Lepilogue)
@@ -250,7 +243,7 @@ LSYM(Lepilogue):
   	     void *args;
 */
 
-ARM_FUNC_START ffi_closure_SYSV
+ARM_FUNC_START(ffi_closure_SYSV)
 	UNWIND .pad #16
 	add	ip, sp, #16
 	stmfd	sp!, {ip, lr}
@@ -330,7 +323,7 @@ ARM_FUNC_START ffi_closure_SYSV
 	@ r3:   fig->flags
 	@ sp+0: ecif.rvalue
 
-ARM_FUNC_START ffi_call_VFP
+ARM_FUNC_START(ffi_call_VFP)
 	@ Save registers
         stmfd	sp!, {r0-r3, fp, lr}
 	UNWIND .save	{r0-r3, fp, lr}
@@ -395,7 +388,7 @@ LSYM(Lbase_args):
 	beq	LSYM(Lepilogue_vfp)
 
 	cmp	r3, #FFI_TYPE_SINT64
-	stmeqia	r2, {r0, r1}
+	stmiaeq	r2, {r0, r1}
 	beq	LSYM(Lepilogue_vfp)
 
 	cmp	r3, #FFI_TYPE_FLOAT
@@ -425,7 +418,7 @@ LSYM(Lepilogue_vfp):
 #endif
 
 
-ARM_FUNC_START ffi_closure_VFP
+ARM_FUNC_START(ffi_closure_VFP)
 	fstmfdd	sp!, {d0-d7}
 	@ r0-r3, then d0-d7
 	UNWIND .pad #80

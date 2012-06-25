@@ -156,7 +156,7 @@ classify_argument (ffi_type *type, enum x86_64_reg_class classes[],
     case FFI_TYPE_SINT64:
     case FFI_TYPE_POINTER:
       {
-	int size = byte_offset + type->size;
+	size_t size = byte_offset + type->size;
 
 	if (size <= 4)
 	  {
@@ -198,7 +198,7 @@ classify_argument (ffi_type *type, enum x86_64_reg_class classes[],
     case FFI_TYPE_STRUCT:
       {
 	const int UNITS_PER_WORD = 8;
-	int words = (type->size + UNITS_PER_WORD - 1) / UNITS_PER_WORD;
+	int words = (int)((type->size + UNITS_PER_WORD - 1) / UNITS_PER_WORD);
 	ffi_type **ptr; 
 	int i;
 	enum x86_64_reg_class subclasses[MAX_CLASSES];
@@ -399,7 +399,7 @@ ffi_prep_cif_machdep (ffi_cif *cif)
   if (ssecount)
     flags |= 1 << 11;
   cif->flags = flags;
-  cif->bytes = ALIGN (bytes, 8);
+  cif->bytes = (unsigned)(ALIGN (bytes, 8));
 
   return FFI_OK;
 }

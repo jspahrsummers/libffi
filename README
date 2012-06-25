@@ -148,9 +148,12 @@ History
 
 See the ChangeLog files for details.
 
+<<<<<<< HEAD
 3.0.12 XXX-XX-XX
         Add Blackfin support.
 
+=======
+>>>>>>> zwaldowski-ios/master
 3.0.11 Apr-11-12
         Add support for variadic functions (ffi_prep_cif_var).
 	Add Linux/x32 support.

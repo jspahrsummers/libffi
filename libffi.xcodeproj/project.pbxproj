@@ -18,8 +18,6 @@
 		6C43CC221534F77800162364 /* ffi64.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C43CC081534F77800162364 /* ffi64.c */; };
 		6C43CC2F1534F7BE00162364 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C43CC281534F7BE00162364 /* closures.c */; };
 		6C43CC301534F7BE00162364 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C43CC281534F7BE00162364 /* closures.c */; };
-		6C43CC311534F7BE00162364 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C43CC291534F7BE00162364 /* debug.c */; };
-		6C43CC321534F7BE00162364 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C43CC291534F7BE00162364 /* debug.c */; };
 		6C43CC371534F7BE00162364 /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C43CC2C1534F7BE00162364 /* prep_cif.c */; };
 		6C43CC381534F7BE00162364 /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C43CC2C1534F7BE00162364 /* prep_cif.c */; };
 		6C43CC391534F7BE00162364 /* raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C43CC2D1534F7BE00162364 /* raw_api.c */; };
@@ -44,7 +42,6 @@
 		6C43CCB21535039600162364 /* fficonfig_armv7.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C43CCA71535039600162364 /* fficonfig_armv7.h */; };
 		6C43CCB31535039600162364 /* fficonfig_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C43CCA81535039600162364 /* fficonfig_i386.h */; };
 		6C43CCB41535039600162364 /* ffitarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C43CCA91535039600162364 /* ffitarget.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6C43CCB51535039600162364 /* ffitarget_arm.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C43CCAA1535039600162364 /* ffitarget_arm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6C43CCB61535039600162364 /* ffitarget_armv7.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C43CCAB1535039600162364 /* ffitarget_armv7.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6C43CCB71535039600162364 /* ffitarget_i386.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C43CCAC1535039600162364 /* ffitarget_i386.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -61,7 +58,6 @@
 		6C43CC071534F77800162364 /* ffi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi.c; sourceTree = "<group>"; };
 		6C43CC081534F77800162364 /* ffi64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ffi64.c; sourceTree = "<group>"; };
 		6C43CC281534F7BE00162364 /* closures.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = closures.c; path = src/closures.c; sourceTree = SOURCE_ROOT; };
-		6C43CC291534F7BE00162364 /* debug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = debug.c; path = src/debug.c; sourceTree = SOURCE_ROOT; };
 		6C43CC2C1534F7BE00162364 /* prep_cif.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = prep_cif.c; path = src/prep_cif.c; sourceTree = SOURCE_ROOT; };
 		6C43CC2D1534F7BE00162364 /* raw_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = raw_api.c; path = src/raw_api.c; sourceTree = SOURCE_ROOT; };
 		6C43CC2E1534F7BE00162364 /* types.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = types.c; path = src/types.c; sourceTree = SOURCE_ROOT; };
@@ -83,7 +79,6 @@
 		6C43CCA71535039600162364 /* fficonfig_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_armv7.h; sourceTree = "<group>"; };
 		6C43CCA81535039600162364 /* fficonfig_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fficonfig_i386.h; sourceTree = "<group>"; };
 		6C43CCA91535039600162364 /* ffitarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget.h; sourceTree = "<group>"; };
-		6C43CCAA1535039600162364 /* ffitarget_arm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_arm.h; sourceTree = "<group>"; };
 		6C43CCAB1535039600162364 /* ffitarget_armv7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_armv7.h; sourceTree = "<group>"; };
 		6C43CCAC1535039600162364 /* ffitarget_i386.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ffitarget_i386.h; sourceTree = "<group>"; };
 		F6F980BA147386130008F121 /* libffi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libffi.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				6C43CC281534F7BE00162364 /* closures.c */,
-				6C43CC291534F7BE00162364 /* debug.c */,
 				6C43CC2C1534F7BE00162364 /* prep_cif.c */,
 				6C43CC2D1534F7BE00162364 /* raw_api.c */,
 				6C43CC2E1534F7BE00162364 /* types.c */,
@@ -215,7 +209,6 @@
 				6C43CCA71535039600162364 /* fficonfig_armv7.h */,
 				6C43CCA81535039600162364 /* fficonfig_i386.h */,
 				6C43CCA91535039600162364 /* ffitarget.h */,
-				6C43CCAA1535039600162364 /* ffitarget_arm.h */,
 				6C43CCAB1535039600162364 /* ffitarget_armv7.h */,
 				6C43CCAC1535039600162364 /* ffitarget_i386.h */,
 			);
@@ -271,7 +264,6 @@
 				6C43CCAF1535039600162364 /* ffi_common.h in Headers */,
 				6C43CCB01535039600162364 /* ffi_i386.h in Headers */,
 				6C43CCB41535039600162364 /* ffitarget.h in Headers */,
-				6C43CCB51535039600162364 /* ffitarget_arm.h in Headers */,
 				6C43CCB61535039600162364 /* ffitarget_armv7.h in Headers */,
 				6C43CCB71535039600162364 /* ffitarget_i386.h in Headers */,
 				6C43CCB11535039600162364 /* fficonfig.h in Headers */,
@@ -287,7 +279,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6C43CB4A1534E9D100162364 /* Build configuration list for PBXNativeTarget "libffi OS X" */;
 			buildPhases = (
-				6C43CC401534FF3B00162364 /* Generate Source and Headers */,
 				6C43CB391534E9D100162364 /* Sources */,
 				6C43CB3A1534E9D100162364 /* Frameworks */,
 				6C43CB3B1534E9D100162364 /* Headers */,
@@ -305,8 +296,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6F980C4147386130008F121 /* Build configuration list for PBXNativeTarget "libffi iOS" */;
 			buildPhases = (
-				6C43CC3E1534F8E200162364 /* Generate Trampoline */,
-				6C43CC3F1534FF1B00162364 /* Generate Source and Headers */,
 				F6F980B6147386130008F121 /* Sources */,
 				F6F980B7147386130008F121 /* Frameworks */,
 				F6F980B8147386130008F121 /* Headers */,
@@ -346,51 +335,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		6C43CC3E1534F8E200162364 /* Generate Trampoline */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Generate Trampoline";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/python;
-			shellScript = "import subprocess\nimport re\nimport os\nimport errno\nimport sys\n\ndef main():\n    with open('src/arm/trampoline.S', 'w') as tramp_out:\n        p = subprocess.Popen(['bash', 'src/arm/gentramp.sh'], stdout=tramp_out)\n        p.wait()\n\nif __name__ == '__main__':\n    main()";
-		};
-		6C43CC3F1534FF1B00162364 /* Generate Source and Headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Generate Source and Headers";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/bin/python generate-ios-source-and-headers.py";
-		};
-		6C43CC401534FF3B00162364 /* Generate Source and Headers */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Generate Source and Headers";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/bin/python generate-osx-source-and-headers.py";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		6C43CB391534E9D100162364 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -401,7 +345,6 @@
 				6C43CC211534F77800162364 /* ffi.c in Sources */,
 				6C43CC221534F77800162364 /* ffi64.c in Sources */,
 				6C43CC301534F7BE00162364 /* closures.c in Sources */,
-				6C43CC321534F7BE00162364 /* debug.c in Sources */,
 				6C43CC381534F7BE00162364 /* prep_cif.c in Sources */,
 				6C43CC3A1534F7BE00162364 /* raw_api.c in Sources */,
 				6C43CC3C1534F7BE00162364 /* types.c in Sources */,
@@ -418,7 +361,6 @@
 				6C43CBE61534F76F00162364 /* darwin.S in Sources */,
 				6C43CBE81534F76F00162364 /* ffi.c in Sources */,
 				6C43CC2F1534F7BE00162364 /* closures.c in Sources */,
-				6C43CC311534F7BE00162364 /* debug.c in Sources */,
 				6C43CC371534F7BE00162364 /* prep_cif.c in Sources */,
 				6C43CC391534F7BE00162364 /* raw_api.c in Sources */,
 				6C43CC3B1534F7BE00162364 /* types.c in Sources */,
@@ -485,8 +427,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VALUE = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ios/include;
 				SDKROOT = iphoneos;
 			};
@@ -503,8 +443,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VALUE = NO;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ios/include;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

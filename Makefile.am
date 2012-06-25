@@ -27,13 +27,16 @@ EXTRA_DIST = LICENSE ChangeLog.v1 ChangeLog.libgcj configure.host \
 	src/x86/win64.S src/x86/freebsd.S src/x86/ffi64.c \
 	src/x86/unix64.S src/x86/ffitarget.h src/pa/ffitarget.h	\
 	src/pa/ffi.c src/pa/linux.S src/pa/hpux32.S src/frv/ffi.c \
+	src/bfin/ffi.c src/bfin/ffitarget.h src/bfin/sysv.S \
 	src/frv/eabi.S src/frv/ffitarget.h src/dlmalloc.c \
 	src/moxie/ffi.c src/moxie/eabi.S libtool-version \
 	ChangeLog.libffi m4/libtool.m4 m4/lt~obsolete.m4 \
-	m4/ltoptions.m4 m4/ltsugar.m4 m4/ltversion.m4 build-ios.sh \
-	m4/ltversion.m4 build-ios.sh src/arm/gentramp.sh src/debug.c \
-	msvcc.sh
-
+	m4/ltoptions.m4 m4/ltsugar.m4 m4/ltversion.m4 \
+	m4/ltversion.m4 src/arm/gentramp.sh src/debug.c \
+	msvcc.sh generate-ios-source-and-headers.py \
+	generate-osx-source-and-headers.py \
+        libffi.xcodeproj/project.pbxproj \
+	src/arm/trampoline.S
 
 info_TEXINFOS = doc/libffi.texi
 
@@ -102,6 +105,9 @@ endif
 
 if MIPS
 nodist_libffi_la_SOURCES += src/mips/ffi.c src/mips/o32.S src/mips/n32.S
+endif
+if BFIN
+nodist_libffi_la_SOURCES += src/bfin/ffi.c src/bfin/sysv.S
 endif
 if X86
 nodist_libffi_la_SOURCES += src/x86/ffi.c src/x86/sysv.S
@@ -194,7 +200,7 @@ endif
 
 libffi_la_LDFLAGS = -version-info `grep -v '^\#' $(srcdir)/libtool-version` $(LTLDFLAGS) $(AM_LTLDFLAGS)
 
-AM_CPPFLAGS = -I. -I$(top_srcdir)/include -Iinclude -I$(top_srcdir)/src
+AM_CPPFLAGS = -I. -I$(top_srcdir)/include -Iinclude -I$(top_srcdir)/src -DFFI_BUILDING
 AM_CCASFLAGS = $(AM_CPPFLAGS) -g
 
 # No install-html or install-pdf support in automake yet
